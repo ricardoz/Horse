@@ -29,6 +29,9 @@ class Horse(object):
         print self.name, "is my name"
         self.races = [] + races
         
+
+
+
     def filt(self, func, disp= False):
         #print type(func), "func"
         races = [x for x in self.races if func(x)]
@@ -40,6 +43,7 @@ class Horse(object):
             return []
         
     def display(self, races):
+        print "horse.filt -> display ", races
         return self.name + ": \n" + "\n".join(str((x)) for x in races)
         
     def __repr__(self):
@@ -66,9 +70,13 @@ class Horse(object):
         raceGrid = tables[1]
         raceRows = raceGrid.findall(".//tr")[1:]
         
-        #print "rr len", len(raceRows), raceRows
-        
-        races = [Race.Race.raceFromSoup(r) for r in raceRows]
+        print "rr len", len(raceRows), raceRows
+
+        '''for r in raceRows:
+            print "---", r.text_content()
+        '''
+
+        races = [Race.Race.raceFromSoup(r) for r in raceRows[::2]]
         return Horse(name, races, new)
         
     factory = staticmethod(factory)

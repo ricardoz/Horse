@@ -8,6 +8,11 @@ def yuni(code):
     
 
 def dataFromRow(race):
+    #what is race?
+    print "Race", race.text
+    print "Race type", type(race)
+    print race.text_content()
+
     vals = {}
     
     data = race.findall(".//td")
@@ -16,11 +21,31 @@ def dataFromRow(race):
     
     
     iter = race.iterlinks()
-    href = iter.next()[2]#.find(".//b[@class='black']//a")
-    
-    while ("result" not in href):
-        
+
+
+    l = list(iter)
+    iter = race.iterlinks()
+
+
+
+    print "iter from race.iterlinks()", iter, "length", len(l)
+
+    for item in iter:
+        print item
+
+    iter = race.iterlinks()
+
+    href = iter.next()[2]  #.find(".//b[@class='black']//a")
+
+
+    print "HREF DataFRomRow Race", href, "type", type(href)
+
+    #11/9/14 Changed result to race_id
+    while ("race_id" not in href):
+        print "while loop checking for race_id", href
         href = iter.next()[2]
+
+    #href = [r[2] for r in race.ite]
     
     
    
@@ -40,7 +65,9 @@ def dataFromRow(race):
     vals['course'] = dt [2][0]
     vals['dist/going'] = dt [2][1]
     vals['class/rt'] = dt [2][2]
+
     print "prevalue", dt[2]
+
     vals['value'] = dt [2][-1]
     
     vals['weight'] = dt [3][0]
@@ -85,6 +112,9 @@ def dataFromRow(race):
     vals['or'] = dt [6][0]
     vals['ts'] = dt [7][0]
     vals['rpr'] = dt [8][0]
+
+
+    print "FINISHED"
     
     return vals
 

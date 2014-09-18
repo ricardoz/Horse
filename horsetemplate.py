@@ -14,7 +14,10 @@ head = """
     var allLinks = [];
 
     function findIndex(arr,obj) {
+    
  	var ind = arr.indexOf(obj);
+        
+        //Could this get too big?
  	if (ind > -1){
 		return ind;
 	} else {
@@ -79,11 +82,11 @@ function prettyPrintOneRace(race){
 var changeHorse = function()
 {
  
-var mylist=document.getElementById("horses");
+    var mylist=document.getElementById("horses");
 
-document.getElementById("horseName").innerHTML="<strong>"+mylist.options[mylist.selectedIndex].text+"</strong>";
-currentHorse = allHorses[mylist.options[mylist.selectedIndex].text];
-return  raceLinksFromHorse(currentHorse,filterByCourse);
+    document.getElementById("horseName").innerHTML="<strong>"+mylist.options[mylist.selectedIndex].text+"</strong>";
+    currentHorse = allHorses[mylist.options[mylist.selectedIndex].text];
+    return  raceLinksFromHorse(currentHorse,filterByCourse);
 }
 
 </script>
